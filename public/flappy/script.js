@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded' , () => {
     let birdBottom = 100;
     let gravity = 2;
     let isGameOver = false;
+    let gap = 430;
 
     function startGame() {
         birdBottom -= gravity; //bird will drop
@@ -48,28 +49,41 @@ document.addEventListener('DOMContentLoaded' , () => {
         let randomHeight = Math.random() * 60;
         let obstacleBottom = randomHeight;
         const obstacle = document.createElement('div');
-        if (!isGameOver) obstacle.classList.add('obstacle'); // add class of obstacle to this div
+        const topObstacle = document.createElement('div');
+        
+        if (!isGameOver) {
+            obstacle.classList.add('obstacle'); // add class of obstacle to this div
+            topObstacle.classList.add('topObstacle'); // add class of obstacle to this div
+        } 
+        
+        
         /* Select the div container that gameDisplay is selecting */
         gameDisplay.appendChild(obstacle); // putting div into game container
+        gameDisplay.appendChild(topObstacle);
         /*Positioning*/
         obstacle.style.left = obstacleLeft + 'px';
         obstacle.style.bottom = obstacleBottom + 'px';
+        topObstacle.style.left = obstacleLeft + 'px';
+        topObstacle.style.bottom = obstacleBottom + gap + 'px';
 
         function moveObstacle() {
             obstacleLeft -=2;
             obstacle.style.left = obstacleLeft + 'px'; // styles obstacle to move left
-            
+            topObstacle.style.left = obstacleLeft + 'px';
+
             /* Stop obstacle once completely out of view */
             if (obstacleLeft === -60) {
                 clearInterval(timerId);
                 gameDisplay.removeChild(obstacle);
+                gameDisplay.removeChild(topObstacle);
             }
 
             /* If obstacle is not in last 200 px of its travels, in middle of grid, and bird is in normal position.
             Or if bird reaches bottom, it loses. 
             birdBottom is in sky grid, so 0 means it's at bottom of it */
             if (
-                obstacleLeft > 200 && obstacleLeft < 280 && birdLeft === 220 ||
+                obstacleLeft > 200 && obstacleLeft < 280 && birdLeft === 220 &&
+                birdBottom < obstacleBottom + 153 || birdBottom > obstacleBottom + gap -200 ||
                 birdBottom === 0
                 ) {
                 gameOver();
