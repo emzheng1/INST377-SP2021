@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded' , () => {
 
     let birdLeft = 220; //spacing for left side of bird
     let birdBottom = 100;
-    let gravity = 2;
+    let gravity = 3;
     let isGameOver = false;
-    let gap = 430;
+    let gap = 480;
 
     function startGame() {
         birdBottom -= gravity; //bird will drop
@@ -32,9 +32,7 @@ document.addEventListener('DOMContentLoaded' , () => {
 
     function jump() {
         /*Adding 50px every time we jump*/
-        if (birdBottom < 500) { 
-            birdBottom += 50; 
-        }
+        if (birdBottom < 500) birdBottom += 50; 
         bird.style.bottom = birdBottom + 'px';
         /*Track dimension bird leaves page: */
         console.log(birdBottom);
@@ -83,13 +81,12 @@ document.addEventListener('DOMContentLoaded' , () => {
             birdBottom is in sky grid, so 0 means it's at bottom of it */
             if (
                 obstacleLeft > 200 && obstacleLeft < 280 && birdLeft === 220 &&
-                birdBottom < obstacleBottom + 153 || birdBottom > obstacleBottom + gap -200 ||
+                (birdBottom < obstacleBottom + 153 || birdBottom > obstacleBottom + gap -200)||
                 birdBottom === 0
                 ) {
                 gameOver();
                 clearInterval(timerId);
             }
-            
         }
         let timerId = setInterval(moveObstacle, 20);
         /* Generate new obstacles once old ones gone 
