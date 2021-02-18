@@ -18,3 +18,10 @@
     position: absolute;
     top: 500px; /*give spacing between top of element and top of parent element its in*/
 }
+
+.bird {
+    background-color: yellow;
+    position: absolute;
+    height: 45px;
+    width: 60px;
+}
