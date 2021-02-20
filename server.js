@@ -38,11 +38,13 @@ app.route('/api')
     const json = await data.json();
     console.log('data from fetch', json);
     res.json(json);
+  
   })
   .post(async (req, res) => {
     console.log('POST request detected');
     console.log('Form data in res.body', req.body);
     console.log('Now send something back to your client');
+    res.send("hello world");
     // res.json({data: dataToSendToFrontEnd});
   });
 
