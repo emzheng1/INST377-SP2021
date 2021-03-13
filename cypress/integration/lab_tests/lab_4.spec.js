@@ -134,9 +134,5 @@ describe('Lab 4', () => {
         .click();
       cy.contains('hello world', { matchCase: false });
     });
-      .click()
-      .then(() => {
-        cy.contains('hello world', { matchCase: false });
-      });
   });
 });
