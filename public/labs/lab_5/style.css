@@ -1,8 +1,11 @@
+html {
+    background-color: rgb(255, 238, 241);
+}
+
 body {
     max-width: 650px;
     line-height: 1.6;
     font-size: 18px;
-    color: pink;
     padding: 0 10px;
 }
 
@@ -21,7 +24,7 @@ h1, h2, h3 {
 
 .list-item {
     border-radius: 4px;
-    color: rgba(25,25,25,90);
-    background: rgb(243, 204, 211);
+    color: rgb(255, 255, 255);
+    background: linear-gradient(to bottom, #62ffc3, #43e7be);;
     padding: 5px;
 }
